@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Vue Router History Deploy">
+  <meta name="description" content="理解分布式锁的场景在微服务中同一个 service 有多个 application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个 order service, 同时这个 order service 启动了5个相同 order application. 它们都需要访问 order database. 这个时候如果不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Deploy">
-<meta property="og:url" content="http://yoursite.com/2019/08/03/front/Vue-Deploy/index.html">
+<meta property="og:title" content="分布式锁和事务">
+<meta property="og:url" content="http://yoursite.com/2019/08/04/distributed/分布式锁和事务/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="Vue Router History Deploy">
+<meta property="og:description" content="理解分布式锁的场景在微服务中同一个 service 有多个 application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个 order service, 同时这个 order service 启动了5个相同 order application. 它们都需要访问 order database. 这个时候如果不">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-03T08:29:36.338Z">
+<meta property="og:updated_time" content="2019-08-17T15:30:14.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue Deploy">
-<meta name="twitter:description" content="Vue Router History Deploy">
-  <link rel="canonical" href="http://yoursite.com/2019/08/03/front/Vue-Deploy/">
+<meta name="twitter:title" content="分布式锁和事务">
+<meta name="twitter:description" content="理解分布式锁的场景在微服务中同一个 service 有多个 application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个 order service, 同时这个 order service 启动了5个相同 order application. 它们都需要访问 order database. 这个时候如果不">
+  <link rel="canonical" href="http://yoursite.com/2019/08/04/distributed/分布式锁和事务/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Vue Deploy | Just a Bolg</title>
+  <title>分布式锁和事务 | Just a Bolg</title>
   
 
 
@@ -217,7 +217,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/front/Vue-Deploy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/distributed/分布式锁和事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance Huang">
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Vue Deploy
+          <h1 class="post-title" itemprop="name headline">分布式锁和事务
 
               
             
@@ -251,11 +251,21 @@
                 
               
 
-              <time title="创建时间：2019-08-03 16:29:02 / 修改时间：16:29:36" itemprop="dateCreated datePublished" datetime="2019-08-03T16:29:02+08:00">2019-08-03</time>
+              <time title="创建时间：2019-08-04 18:39:07" itemprop="dateCreated datePublished" datetime="2019-08-04T18:39:07+08:00">2019-08-04</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 23:30:14" itemprop="dateModified" datetime="2019-08-17T23:30:14+08:00">2019-08-17</time>
+              </span>
             
           
 
@@ -270,7 +280,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">Vue Router History Deploy</a></p>
+        <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><h3 id="分布式锁的场景"><a href="#分布式锁的场景" class="headerlink" title="分布式锁的场景"></a>分布式锁的场景</h3><p>在微服务中同一个 <strong>service</strong> 有多个 <strong>application</strong>, 为了控制这多个 <strong>application</strong> 对相同的 <strong>resource</strong> 进行访问, 所采用的一种措施.</p>
+<p>例如, 现在你的系统中有一个 order service, 同时这个 order service 启动了5个相同 order application. 它们都需要访问 order database. 这个时候如果不对这个5个 order application 进行加锁限制资源的访问, 那么就会出现诸如重复添加等问题.</p>
+<h3 id="分布式事务的场景"><a href="#分布式事务的场景" class="headerlink" title="分布式事务的场景"></a>分布式事务的场景</h3><p>而分布式事务是指不同 <strong>service</strong>, 不同 <strong>resource</strong> 之间的所需要满足的数据 <strong>CAP</strong> 又或者 <strong>BASE</strong>. 所采用的一种措施.</p>
+<p>例如, 你的 customer service 依赖于 order service. 而 customer service 拥有 customer database, order sevice 拥有 order database.</p>
+<blockquote>
+<p>一般在微服务中, 每个 <strong>service</strong> 只能操作自己对应的 <strong>resource</strong>.</p>
+</blockquote>
+<p>这个时候如果 customer service 在操作自己的 customer database 的同时, 还要要通过 order service 对 order database 进行操作, 就需要引入分布式事务来保证数据的最终一致性.</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ul>
+<li>分布式锁, 最好采用ZooKeeper</li>
+<li>分布式事务, 最好采用MQ</li>
+</ul>
 
     </div>
 
@@ -281,8 +302,8 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/03/front/服务端渲染/" rel="next" title="服务端渲染">
-                <i class="fa fa-chevron-left"></i> 服务端渲染
+              <a href="/2019/08/03/backend/JPA/" rel="next" title="JPA">
+                <i class="fa fa-chevron-left"></i> JPA
               </a>
             
           </div>
@@ -290,8 +311,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/03/front/webpack/" rel="prev" title="webpack">
-                webpack <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/05/backend/junit5/" rel="prev" title="Junit5">
+                Junit5 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -323,8 +344,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -366,6 +396,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理解"><span class="nav-number">1.</span> <span class="nav-text">理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁的场景"><span class="nav-number">1.1.</span> <span class="nav-text">分布式锁的场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务的场景"><span class="nav-number">1.2.</span> <span class="nav-text">分布式事务的场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">2.</span> <span class="nav-text">最佳实践</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>

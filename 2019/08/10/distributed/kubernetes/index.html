@@ -57,14 +57,14 @@
 
   <meta name="description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubernetes">
+<meta property="og:title" content="Kubernetes">
 <meta property="og:url" content="http://yoursite.com/2019/08/10/distributed/kubernetes/index.html">
 <meta property="og:site_name" content="Just a Bolg">
 <meta property="og:description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-10T05:54:38.553Z">
+<meta property="og:updated_time" content="2019-08-17T15:27:45.095Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kubernetes">
+<meta name="twitter:title" content="Kubernetes">
 <meta name="twitter:description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
   <link rel="canonical" href="http://yoursite.com/2019/08/10/distributed/kubernetes/">
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>kubernetes | Just a Bolg</title>
+  <title>Kubernetes | Just a Bolg</title>
   
 
 
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">kubernetes
+          <h1 class="post-title" itemprop="name headline">Kubernetes
 
               
             
@@ -251,11 +251,21 @@
                 
               
 
-              <time title="创建时间：2019-08-10 12:10:08 / 修改时间：13:54:38" itemprop="dateCreated datePublished" datetime="2019-08-10T12:10:08+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-10 12:10:08" itemprop="dateCreated datePublished" datetime="2019-08-10T12:10:08+08:00">2019-08-10</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 23:27:45" itemprop="dateModified" datetime="2019-08-17T23:27:45+08:00">2019-08-17</time>
+              </span>
             
           
 
@@ -287,9 +297,12 @@
 <li><code>minikube</code>, <code>kubeadm</code> 不可用于生产环境中.</li>
 </ul>
 <hr>
-<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><ol>
-<li><strong>kubernetes</strong> 如何和 <strong>spring cloud</strong> 结合. 例如<code>service</code> 和 <code>services discovery</code>, <code>configMap</code> 和 <code>config center</code>.</li>
-</ol>
+<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><ul>
+<li>Q: <strong>kubernetes</strong> 如何和 <strong>spring cloud</strong> 结合. 例如<code>service</code> 和 <code>services discovery</code>, <code>configMap</code> 和 <code>config center</code>.<ul>
+<li>Spring Cloud 已经提供了 <strong>Spring Cloud Kubernetes</strong> 与 <strong>Kubernetes</strong> 相结合.</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -309,8 +322,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/11/distributed/Microservice/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/11/distributed/Microservice/" rel="prev" title="Microservice">
+                Microservice <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -364,7 +377,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -381,7 +394,9 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

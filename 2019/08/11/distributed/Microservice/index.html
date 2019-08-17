@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="service discovery在微服务中服务的注册与发现是非常重要的一个环节.">
+  <meta name="description" content="Service discovery 在 microservice 中 service 的注册与发现是非常重要的一个环节. 同一种类的 service 对应的是部署在不同机器上的 application, 通过向 service discovery center(服务发现中心) 进行注册, 被其他 service 获知. 例如 customer service 有3个 application 在不同">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Just a Bolg">
+<meta property="og:title" content="Microservice">
 <meta property="og:url" content="http://yoursite.com/2019/08/11/distributed/Microservice/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="service discovery在微服务中服务的注册与发现是非常重要的一个环节.">
+<meta property="og:description" content="Service discovery 在 microservice 中 service 的注册与发现是非常重要的一个环节. 同一种类的 service 对应的是部署在不同机器上的 application, 通过向 service discovery center(服务发现中心) 进行注册, 被其他 service 获知. 例如 customer service 有3个 application 在不同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-11T14:25:30.365Z">
+<meta property="og:updated_time" content="2019-08-16T12:51:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Just a Bolg">
-<meta name="twitter:description" content="service discovery在微服务中服务的注册与发现是非常重要的一个环节.">
+<meta name="twitter:title" content="Microservice">
+<meta name="twitter:description" content="Service discovery 在 microservice 中 service 的注册与发现是非常重要的一个环节. 同一种类的 service 对应的是部署在不同机器上的 application, 通过向 service discovery center(服务发现中心) 进行注册, 被其他 service 获知. 例如 customer service 有3个 application 在不同">
   <link rel="canonical" href="http://yoursite.com/2019/08/11/distributed/Microservice/">
 
 
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title> | Just a Bolg</title>
+  <title>Microservice | Just a Bolg</title>
   
 
 
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">Microservice
 
               
             
@@ -251,11 +251,21 @@
                 
               
 
-              <time title="创建时间：2019-08-11 22:24:33 / 修改时间：22:25:30" itemprop="dateCreated datePublished" datetime="2019-08-11T22:24:33+08:00">2019-08-11</time>
+              <time title="创建时间：2019-08-11 22:30:08" itemprop="dateCreated datePublished" datetime="2019-08-11T22:30:08+08:00">2019-08-11</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-16 20:51:08" itemprop="dateModified" datetime="2019-08-16T20:51:08+08:00">2019-08-16</time>
+              </span>
             
           
 
@@ -270,8 +280,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="service-discovery"><a href="#service-discovery" class="headerlink" title="service discovery"></a>service discovery</h2><p>在微服务中服务的注册与发现是非常重要的一个环节.</p>
-
+        <h2 id="Service-discovery"><a href="#Service-discovery" class="headerlink" title="Service discovery"></a>Service discovery</h2><hr>
+<p>在 <code>microservice</code> 中 <code>service</code> 的注册与发现是非常重要的一个环节. 同一种类的 <code>service</code> 对应的是部署在不同机器上的 <code>application</code>, 通过向 <code>service discovery center(服务发现中心)</code> 进行注册, 被其他 <code>service</code> 获知.</p>
+<p>例如 customer service 有3个 <code>application</code> 在不同的机器上.  customer service 在 service discovery center 使用 customer 这个 <code>serviceID</code> 进行注册之后, 这个 customer service 对应的3个 <code>application</code> 的IP和端口就可以通过 <code>serviceID</code> (即 customer )暴露在这个集群中.</p>
+<p>这里比较巧妙的地方在于使用 <code>serviceID</code> 屏蔽了复杂且会不断变动的 <code>${hostname:port}</code> 列表. 同时充当了一个 <code>Health Indicator(健康检测)</code> 的作用(长时间未发送 <code>hearthbeat</code> 的 <code>application</code> 将会从注册列表中移除).</p>
+<h2 id="Circuit-Breaker"><a href="#Circuit-Breaker" class="headerlink" title="Circuit Breaker"></a>Circuit Breaker</h2><hr>
+<p><code>circuit breaker(断路器)</code> 在 <code>microservice</code> 中起到保护整个系统的可靠性的作用. 试想这样一个场景, 如果你的服务A挂了, 然后服务B依赖于服务A, 这个时候你的服务B也会因为服务A挂而挂.</p>
+<p>而 <code>circuit breaker</code> 提供了一种名为 <code>isolation(隔离)</code> 的机制, 它使用多个线程池保证只有与调用服务A相关的线程池会阻塞.</p>
+<p>然后提供了一种名为 <code>fuse(熔断)</code> 的机制, 使得对已经挂掉的服务不会再去执行超时重试的操作, 而是直接返回.</p>
+<p>然后 <code>Service downgrade(服务降级)</code> 的机制, 来对本次失败操作进行补偿, 例如保存当前失败操作的信息等.</p>
+<h2 id="Client-Side-Load-Balancer"><a href="#Client-Side-Load-Balancer" class="headerlink" title="Client Side Load Balancer"></a>Client Side Load Balancer</h2><p>在 <code>microservice</code> 中 <code>service</code> 之间都是通过向 <code>service discovery center</code> 主动拉取 <code>service</code> 对应的 <code>IpAddres List</code> 来进行访问的. 我个人理解是出于对 <code>service discovery center</code> 请求压力的缓解, 所以采用了 <code>client side load balancer(客户端负载均衡)</code> 的策略</p>
+<blockquote>
+<p><code>service discovery center</code> 每天在 <code>microservice</code> 中承受的压力是巨大的. 每个 <code>application</code> 每隔30s就会发送自己的 <code>heartbeat(心跳)</code> 到 <code>service discovery center</code>.</p>
+</blockquote>
+<p><code>client</code> 只需要简单地从 <code>service discovery center</code> 拉取 <code>service</code> 对应的 <code>IpAddres List</code>, 然后使用最简单 <code>Round Robin(轮询)</code> 策略即可.</p>
+<h2 id="API-gateway"><a href="#API-gateway" class="headerlink" title="API gateway"></a>API gateway</h2><p>可以简单理解为就是 nginx, 提供 <code>Reverse proxy(反向代理)</code> 的功能. 同时你还可以在这里通过 <code>Filter(拦截器)</code> 去做一些其他的操作. 而为什么使用 Netflix 中的 <code>Zuul</code> 而不使用 nginx 作为 <code>API gateway</code>. 我个人认为是因为 <code>Zuul</code> 能很好的利用 Netflix 体系中的其他组件对 <code>API gateway</code> 进行开发.</p>
+<p>作为一个统一的系统入口, 它可以做到 <code>Authorization(授权)</code>, <code>Limiting(限流)</code>, <code>log(日志)</code> 等操作.</p>
+<h2 id="Config-Center"><a href="#Config-Center" class="headerlink" title="Config Center"></a>Config Center</h2><p>如果你的一个 <code>service</code> 对应有十几个甚至几十个 <code>application</code>, 那么你想修改这个 <code>service</code> 所对应的 <code>application setting file</code> 的时候, 这将会一件非常耗时的操作.</p>
+<p>所以在 <code>microservice</code> 中引入了 <code>config center(配置中心的概念)</code>. 通过它你可以将某一个 <code>service</code> 对应的 <code>config file</code> 移动至一个统一的位置进行管理, 这个地方可以是某一个 Git仓库.</p>
+<p>而且通过和 <code>endpoints</code> 结合还可以做到 <code>hot update</code>, 不过还需要一个 <code>Bus</code> 去对全局的 <code>application</code> 发送拉取最新配置的事件.</p>
+<h2 id="Message-Queue"><a href="#Message-Queue" class="headerlink" title="Message Queue"></a>Message Queue</h2><p><code>Message Queue(消息队列)</code> 早在传统的 <code>SOA</code> 项目中就已经存在. <code>Message Queue</code> 在系统可以充当服务调用的媒介, 但同时它最重要的两个作用是 <strong>柔性事务</strong> 和 <strong>流量削峰</strong>.</p>
+<blockquote>
+<p>在服务调用中有两种方式 <code>RPC</code> 和 <code>Event Drive</code>.<br><code>RPC</code> 适合在 <code>XA(二阶段提交)</code> 的场景中使用.<br><code>Event Drive</code> 适合在追求 <code>最总一致性</code> 的场景中使用.</p>
+</blockquote>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2>
     </div>
 
     
@@ -281,8 +313,8 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/10/distributed/kubernetes/" rel="next" title="kubernetes">
-                <i class="fa fa-chevron-left"></i> kubernetes
+              <a href="/2019/08/10/distributed/kubernetes/" rel="next" title="Kubernetes">
+                <i class="fa fa-chevron-left"></i> Kubernetes
               </a>
             
           </div>
@@ -290,6 +322,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+              <a href="/2019/08/12/backend/Concurrent/" rel="prev" title="Concurrent">
+                Concurrent <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
     </footer>
@@ -341,7 +377,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -358,7 +394,9 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -379,7 +417,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#service-discovery"><span class="nav-number">1.</span> <span class="nav-text">service discovery</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-discovery"><span class="nav-number">1.</span> <span class="nav-text">Service discovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Circuit-Breaker"><span class="nav-number">2.</span> <span class="nav-text">Circuit Breaker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client-Side-Load-Balancer"><span class="nav-number">3.</span> <span class="nav-text">Client Side Load Balancer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-gateway"><span class="nav-number">4.</span> <span class="nav-text">API gateway</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-Center"><span class="nav-number">5.</span> <span class="nav-text">Config Center</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Message-Queue"><span class="nav-number">6.</span> <span class="nav-text">Message Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security"><span class="nav-number">7.</span> <span class="nav-text">Security</span></a></li></ol></div>
             
 
           </div>

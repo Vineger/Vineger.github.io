@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Vue Router History Deploy">
+  <meta name="description" content="volatile 在 JVM 中, 如果A线程与B线程修改同一个类变量(class filed), 这一个修改的操作, 在A线程与B线程运行期间是互相之间是不可见的. 这是因为, 线程在执行的时候会从主内存获取最新的变量值, 然后之后在最后执行完毕的时候, 才会将工作内存中的内存刷新回去主内存. 这种特性我们称之为线程之间的 不可见性. 但是在 JAVA 中, 你可以使用 volatile 来强制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Deploy">
-<meta property="og:url" content="http://yoursite.com/2019/08/03/front/Vue-Deploy/index.html">
+<meta property="og:title" content="Concurrent">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/backend/Concurrent/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="Vue Router History Deploy">
+<meta property="og:description" content="volatile 在 JVM 中, 如果A线程与B线程修改同一个类变量(class filed), 这一个修改的操作, 在A线程与B线程运行期间是互相之间是不可见的. 这是因为, 线程在执行的时候会从主内存获取最新的变量值, 然后之后在最后执行完毕的时候, 才会将工作内存中的内存刷新回去主内存. 这种特性我们称之为线程之间的 不可见性. 但是在 JAVA 中, 你可以使用 volatile 来强制">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-03T08:29:36.338Z">
+<meta property="og:updated_time" content="2019-08-17T16:15:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue Deploy">
-<meta name="twitter:description" content="Vue Router History Deploy">
-  <link rel="canonical" href="http://yoursite.com/2019/08/03/front/Vue-Deploy/">
+<meta name="twitter:title" content="Concurrent">
+<meta name="twitter:description" content="volatile 在 JVM 中, 如果A线程与B线程修改同一个类变量(class filed), 这一个修改的操作, 在A线程与B线程运行期间是互相之间是不可见的. 这是因为, 线程在执行的时候会从主内存获取最新的变量值, 然后之后在最后执行完毕的时候, 才会将工作内存中的内存刷新回去主内存. 这种特性我们称之为线程之间的 不可见性. 但是在 JAVA 中, 你可以使用 volatile 来强制">
+  <link rel="canonical" href="http://yoursite.com/2019/08/12/backend/Concurrent/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Vue Deploy | Just a Bolg</title>
+  <title>Concurrent | Just a Bolg</title>
   
 
 
@@ -217,7 +217,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/front/Vue-Deploy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/12/backend/Concurrent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance Huang">
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Vue Deploy
+          <h1 class="post-title" itemprop="name headline">Concurrent
 
               
             
@@ -251,11 +251,21 @@
                 
               
 
-              <time title="创建时间：2019-08-03 16:29:02 / 修改时间：16:29:36" itemprop="dateCreated datePublished" datetime="2019-08-03T16:29:02+08:00">2019-08-03</time>
+              <time title="创建时间：2019-08-12 08:20:02" itemprop="dateCreated datePublished" datetime="2019-08-12T08:20:02+08:00">2019-08-12</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-18 00:15:00" itemprop="dateModified" datetime="2019-08-18T00:15:00+08:00">2019-08-18</time>
+              </span>
             
           
 
@@ -270,7 +280,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90" target="_blank" rel="noopener">Vue Router History Deploy</a></p>
+        <h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><hr>
+<p>在 JVM 中, 如果A线程与B线程修改同一个类变量(<code>class filed</code>), 这一个修改的操作, 在A线程与B线程运行期间是互相之间是不可见的. 这是因为, 线程在执行的时候会从主内存获取最新的变量值, 然后之后在最后执行完毕的时候, 才会将工作内存中的内存刷新回去主内存. 这种特性我们称之为线程之间的 <strong>不可见性</strong>.</p>
+<p>但是在 JAVA 中, 你可以使用 <code>volatile</code> 来强制线程每一次对类变量的修改, 都会立刻将该值刷新回去主内存.</p>
+<blockquote>
+<p><code>volatile</code> 虽然消除了线程之间的 <strong>不可见性</strong>, 但是它并不能保证线程是线程安全的.</p>
+</blockquote>
+<h2 id="CAS-Compare-and-Set"><a href="#CAS-Compare-and-Set" class="headerlink" title="CAS(Compare and Set)"></a>CAS(Compare and Set)</h2><hr>
+<p><strong>CAS</strong>, 可以看作是乐观锁的一种实现. 它分为三个操作</p>
+<ol>
+<li>首先获取 <strong>old value(当前值)</strong></li>
+<li>接着对 <strong>old value</strong> 进行自增获得 <strong>expect(期望值)</strong></li>
+<li>最后使用 <strong>old value</strong> 与当前内存中 <strong>new value(最新值)</strong> 进行比较<ol>
+<li>如果结果相等, 说明没有线程操作过该值, 则将 <strong>expect</strong> 对内存中的设置</li>
+<li>如果不等, 则从步骤一重新开始</li>
+</ol>
+</li>
+</ol>
+<p>在 JAVA 中对应的就是 <code>Atomic</code>. 它是通过 <strong>JNI</strong> 调用CPU指令来执行的 <strong>CAS</strong>. 但是它有一个问题, 就是如果有大量的线程同时并发的修改该值, 那么就会有大量的线程不断的循环步骤123. 所以在 JAVA 中通过使用 <strong>分段CAS</strong> 以及 <strong>自动分段迁移</strong> 对其进行了优化, 对应的类是 <code>LongAdder</code> </p>
+<p>其内部是这样的 <strong>内部会搞一个Cell数组, 每个数组是一个数值分段</strong>. 这时, 线程会分别去对不同Cell内部的value值进行CAS操作, 如果你想获取最后的值, 那么它就会将不同的Cell累加返回给你.</p>
+<h2 id="AQS-AbstraQueueSynchronize"><a href="#AQS-AbstraQueueSynchronize" class="headerlink" title="AQS(AbstraQueueSynchronize)"></a>AQS(AbstraQueueSynchronize)</h2><hr>
+<p><code>ReentrantLock</code> 内部就是使用 <strong>AQS</strong> 来进行实现的. <strong>AQS</strong> 中拥有两个变量, 一个是 <code>state</code> 保存当前加锁数量和状态, 一个是 <code>this</code> 保存当前锁持有者.如果一个线程要获取当前的锁</p>
+<ol>
+<li>那么它需要判断 <code>state</code> 是否为0, </li>
+<li>若为0, 则说明还没有人获得该锁</li>
+<li>接着使用 <strong>CAS</strong> 对 <code>state</code> 加一, 这就获取锁成功了.</li>
+<li>释放锁的时候, 对应的就是自减</li>
+</ol>
+<p>而重入锁的时候就是, 多出一步判断 <code>this</code> 对象是不是自己. 若是, 则使用 <strong>CAS</strong> 进行自增.</p>
+<p>而公平的可重入锁就是, 在其它线程获取锁失败的时候, 会进入 <strong>AQS</strong> 中的一个等待队列. 而每一次释放锁之后的线程唤醒, 就会对等待队列中的第一个进行唤醒.</p>
+<h2 id="something-about-ReadWriteLock"><a href="#something-about-ReadWriteLock" class="headerlink" title="something about ReadWriteLock"></a>something about ReadWriteLock</h2><hr>
+<p>读写锁适用场景为读多写少的场景.</p>
 
     </div>
 
@@ -281,8 +321,8 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/03/front/服务端渲染/" rel="next" title="服务端渲染">
-                <i class="fa fa-chevron-left"></i> 服务端渲染
+              <a href="/2019/08/11/distributed/Microservice/" rel="next" title="Microservice">
+                <i class="fa fa-chevron-left"></i> Microservice
               </a>
             
           </div>
@@ -290,8 +330,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/03/front/webpack/" rel="prev" title="webpack">
-                webpack <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/16/backend/Java-11/" rel="prev" title="Java 11 new features">
+                Java 11 new features <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -323,8 +363,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -366,6 +415,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile"><span class="nav-number">1.</span> <span class="nav-text">volatile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS-Compare-and-Set"><span class="nav-number">2.</span> <span class="nav-text">CAS(Compare and Set)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AQS-AbstraQueueSynchronize"><span class="nav-number">3.</span> <span class="nav-text">AQS(AbstraQueueSynchronize)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#something-about-ReadWriteLock"><span class="nav-number">4.</span> <span class="nav-text">something about ReadWriteLock</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
