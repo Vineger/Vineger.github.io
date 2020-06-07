@@ -55,18 +55,14 @@
   };
 </script>
 
-  <meta name="description" content="理解分布式锁的场景在微服务中同一个service有多个application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个order service, 同时这个order service 启动了5个相同 order application. 它们都需要访问order database. 这个时候如果不对这个5个">
-<meta property="og:type" content="article">
-<meta property="og:title" content="分布式锁和事务">
-<meta property="og:url" content="http://yoursite.com/2019/08/04/backend/分布式锁和事务/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Just a Bolg">
+<meta property="og:url" content="http://yoursite.com/categories/Refactor/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="理解分布式锁的场景在微服务中同一个service有多个application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个order service, 同时这个order service 启动了5个相同 order application. 它们都需要访问order database. 这个时候如果不对这个5个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-04T11:22:47.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式锁和事务">
-<meta name="twitter:description" content="理解分布式锁的场景在微服务中同一个service有多个application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施. 例如, 现在你的系统中有一个order service, 同时这个order service 启动了5个相同 order application. 它们都需要访问order database. 这个时候如果不对这个5个">
-  <link rel="canonical" href="http://yoursite.com/2019/08/04/backend/分布式锁和事务/">
+<meta name="twitter:title" content="Just a Bolg">
+  <link rel="canonical" href="http://yoursite.com/categories/Refactor/">
 
 
 <script id="page-configurations">
@@ -74,13 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
+    isPost: false,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分布式锁和事务 | Just a Bolg</title>
+  <title>分类: Refactor | Just a Bolg</title>
   
 
 
@@ -206,120 +202,77 @@
         <div class="content-wrap">
             
 
-          <div id="content" class="content page-post-detail">
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+          <div id="content" class="content ">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
+
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Refactor<small>分类</small>
+        </h1>
+      </div>
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/backend/分布式锁和事务/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chance Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a Bolg">
-    </span>
-      <header class="post-header">
-
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/08/18/refactor/Refactor Code Smell/" itemprop="url">
+            
+              <span itemprop="name">Refactor -- Code Smell</span>
+            
+          </a>
         
-          <h1 class="post-title" itemprop="name headline">分布式锁和事务
+      </h2>
 
-              
-            
-          </h1>
-        
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-08-18T10:03:35+08:00"
+              content="2019-08-18">
+          08-18
+        </time>
+      </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-04 18:39:07 / 修改时间：19:22:47" itemprop="dateCreated datePublished" datetime="2019-08-04T18:39:07+08:00">2019-08-04</time>
-            </span>
-          
-            
-
-            
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><h3 id="分布式锁的场景"><a href="#分布式锁的场景" class="headerlink" title="分布式锁的场景"></a>分布式锁的场景</h3><p>在微服务中同一个service有多个application, 为了控制这多个 application 对相同的 resource 进行访问, 所采用的一种措施.</p>
-<p>例如, 现在你的系统中有一个order service, 同时这个order service 启动了5个相同 order application. 它们都需要访问order database. 这个时候如果不对这个5个 order application 进行加锁限制资源的访问, 那么就会出现诸如重复添加等问题.</p>
-<h3 id="分布式事务的场景"><a href="#分布式事务的场景" class="headerlink" title="分布式事务的场景"></a>分布式事务的场景</h3><p>而分布式事务是指不同service, 不同resource之间的所需要满足的数据CAP又或者BASE. 所采用的一种措施.</p>
-<p>例如, 你的customer service依赖于order service. 而customer service拥有customer database, order sevice 拥有 order database.</p>
-<blockquote>
-<p>一般在微服务中, 每个service只能操作自己对应的resource.</p>
-</blockquote>
-<p>这个时候如果customer service在操作自己的customer database的同时, 还要要通过order service对order database进行操作, 就需要引入分布式事务来保证数据的最终一致性.</p>
-<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ul>
-<li>分布式锁, 最好采用ZooKeeper</li>
-<li>分布式事务, 最好采用MQ</li>
-</ul>
-
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/03/backend/JPA/" rel="next" title="JPA">
-                <i class="fa fa-chevron-left"></i> JPA
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/05/backend/junit5/" rel="prev" title="junit5">
-                junit5 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
+
+      
+    </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
           
-
 
         </div>
           
@@ -334,17 +287,8 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -356,8 +300,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -373,7 +334,9 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -384,23 +347,6 @@
 
         </div>
       </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理解"><span class="nav-number">1.</span> <span class="nav-text">理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁的场景"><span class="nav-number">1.1.</span> <span class="nav-text">分布式锁的场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式事务的场景"><span class="nav-number">1.2.</span> <span class="nav-text">分布式事务的场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">2.</span> <span class="nav-text">最佳实践</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
     </div>
   </aside>
@@ -412,7 +358,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -499,9 +445,5 @@
 
 
   
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
 </body>
 </html>

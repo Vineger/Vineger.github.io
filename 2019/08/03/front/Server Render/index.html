@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
+  <meta name="description" content="nuxt.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kubernetes">
-<meta property="og:url" content="http://yoursite.com/2019/08/10/distributed/kubernetes/index.html">
+<meta property="og:title" content="Server Render">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/front/Server Render/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
+<meta property="og:description" content="nuxt.js">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T15:27:45.095Z">
+<meta property="og:updated_time" content="2019-08-18T01:59:26.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kubernetes">
-<meta name="twitter:description" content="Podkubernets 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 localhost 或者是本地文件的方式进行数据交互. 这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 Pod 的引入就是为了解决这个问题. Service访问集群中的 Pod 的一">
-  <link rel="canonical" href="http://yoursite.com/2019/08/10/distributed/kubernetes/">
+<meta name="twitter:title" content="Server Render">
+<meta name="twitter:description" content="nuxt.js">
+  <link rel="canonical" href="http://yoursite.com/2019/08/03/front/Server Render/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Kubernetes | Just a Bolg</title>
+  <title>Server Render | Just a Bolg</title>
   
 
 
@@ -217,7 +217,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/distributed/kubernetes/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/front/Server Render/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance Huang">
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Kubernetes
+          <h1 class="post-title" itemprop="name headline">Server Render
 
               
             
@@ -251,7 +251,7 @@
                 
               
 
-              <time title="创建时间：2019-08-10 12:10:08" itemprop="dateCreated datePublished" datetime="2019-08-10T12:10:08+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-03 16:27:29" itemprop="dateCreated datePublished" datetime="2019-08-03T16:27:29+08:00">2019-08-03</time>
             </span>
           
             
@@ -264,7 +264,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 23:27:45" itemprop="dateModified" datetime="2019-08-17T23:27:45+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-18 09:59:26" itemprop="dateModified" datetime="2019-08-18T09:59:26+08:00">2019-08-18</time>
               </span>
             
           
@@ -280,29 +280,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h2><p><strong>kubernets</strong> 的最小部署单位. 抽象级别的操作系统. 定义了一组互相依赖的容器, 它们之间可以通过 <code>localhost</code> 或者是本地文件的方式进行数据交互.</p>
-<p>这个抽象的出现是为了解决一组强依赖的部署对象. 例如, 日志应用, 普通应用之间就属于一种强依赖, 一般我们希望将这两个应用部署在同一台物理机器上. 而 <code>Pod</code> 的引入就是为了解决这个问题.</p>
-<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>访问集群中的 <code>Pod</code> 的一层网络代理, 具有<strong>负载均衡</strong>的功能.</p>
-<p><code>Pod</code> 在集群中的 <strong>IP</strong> 随着 <code>Pod</code> 的更新等操作, 不会一直绑定一个值. 这个时候就需要对外提供一层不变的 <strong>IP</strong> 供其它的 <code>Pod</code> 或者用户访问对应的 <code>Pod</code>. 可以暂时简单理解为对 <code>Pod</code> 做了一层反向代理.</p>
-<h2 id="Volumes"><a href="#Volumes" class="headerlink" title="Volumes"></a>Volumes</h2><p>与 <strong>Docker</strong> 中的 <code>Volumes</code> 类似. 只是在 <strong>Kubernetes</strong> 中 <code>Volumes</code> 是与 <code>Pod</code> 绑定的. 且支持的类型更加丰富</p>
-<h2 id="Master-amp-Node"><a href="#Master-amp-Node" class="headerlink" title="Master &amp; Node"></a>Master &amp; Node</h2><ul>
-<li><code>Master</code> 指的是 <code>kubernetes</code> 中的调度节点. </li>
-<li><code>Node</code> 指的是 <code>kubernetes</code> 中的物理节点.</li>
-</ul>
-<hr>
-<h2 id="Type-of-Vlomes"><a href="#Type-of-Vlomes" class="headerlink" title="Type of Vlomes"></a>Type of Vlomes</h2><h3 id="configMap"><a href="#configMap" class="headerlink" title="configMap"></a>configMap</h3><p>类似于配置中心. 通过文件将保存在 <strong>kubernetes</strong> 中的 <strong>key-value</strong> 注入 <code>container</code> 中.</p>
-<h3 id="secret"><a href="#secret" class="headerlink" title="secret"></a>secret</h3><p>私有安全信息. 将保存在 <strong>kebernetes</strong> 中对应的安全信息通过文件挂载的方式注入 <code>container</code>. (注意, 保存在 <strong>kubernetes</strong> 中的 <code>secre</code> 信息必须是经过加密的.)</p>
-<hr>
-<h2 id="others"><a href="#others" class="headerlink" title="others"></a>others</h2><ul>
-<li><code>minikube</code>, <code>kubeadm</code> 不可用于生产环境中.</li>
-</ul>
-<hr>
-<h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><ul>
-<li>Q: <strong>kubernetes</strong> 如何和 <strong>spring cloud</strong> 结合. 例如<code>service</code> 和 <code>services discovery</code>, <code>configMap</code> 和 <code>config center</code>.<ul>
-<li>Spring Cloud 已经提供了 <strong>Spring Cloud Kubernetes</strong> 与 <strong>Kubernetes</strong> 相结合.</li>
-</ul>
-</li>
-</ul>
+        <p><a href="https://nuxtjs.org/guide/installation" target="_blank" rel="noopener">nuxt.js</a></p>
 
     </div>
 
@@ -313,8 +291,8 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/10/front/Vue Others/" rel="next" title="Vue Others">
-                <i class="fa fa-chevron-left"></i> Vue Others
+              <a href="/2019/08/03/front/Unit Testing/" rel="next" title="Unit Testing">
+                <i class="fa fa-chevron-left"></i> Unit Testing
               </a>
             
           </div>
@@ -322,8 +300,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/11/distributed/Microservice/" rel="prev" title="Microservice">
-                Microservice <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/03/front/Vue-Deploy/" rel="prev" title="Vue Deploy">
+                Vue Deploy <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -355,17 +333,8 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,8 +346,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -407,23 +393,6 @@
 
         </div>
       </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pod"><span class="nav-number">1.</span> <span class="nav-text">Pod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service"><span class="nav-number">2.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Volumes"><span class="nav-number">3.</span> <span class="nav-text">Volumes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Master-amp-Node"><span class="nav-number">4.</span> <span class="nav-text">Master &amp; Node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-of-Vlomes"><span class="nav-number">5.</span> <span class="nav-text">Type of Vlomes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#configMap"><span class="nav-number">5.1.</span> <span class="nav-text">configMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#secret"><span class="nav-number">5.2.</span> <span class="nav-text">secret</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#others"><span class="nav-number">6.</span> <span class="nav-text">others</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Questions"><span class="nav-number">7.</span> <span class="nav-text">Questions</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
     </div>
   </aside>
@@ -435,7 +404,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

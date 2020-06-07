@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="nuxt.js">
+  <meta name="description" content="重新组织函数  Extract Method   —   Inline Method Inline Temp (内联临时变量) Replace Temp with Query (以查询取代临时变量) Introduce Explaining Variable (引入解释性变量)  Split Temporary Variable (分解临时变量) Remove Assignments to Par">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务端渲染">
-<meta property="og:url" content="http://yoursite.com/2019/08/03/front/服务端渲染/index.html">
+<meta property="og:title" content="Refactor -- Treatment">
+<meta property="og:url" content="http://yoursite.com/2019/08/25/refactor/Refactor Treatment/index.html">
 <meta property="og:site_name" content="Just a Bolg">
-<meta property="og:description" content="nuxt.js">
+<meta property="og:description" content="重新组织函数  Extract Method   —   Inline Method Inline Temp (内联临时变量) Replace Temp with Query (以查询取代临时变量) Introduce Explaining Variable (引入解释性变量)  Split Temporary Variable (分解临时变量) Remove Assignments to Par">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-03T08:32:01.098Z">
+<meta property="og:updated_time" content="2020-06-07T03:37:24.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务端渲染">
-<meta name="twitter:description" content="nuxt.js">
-  <link rel="canonical" href="http://yoursite.com/2019/08/03/front/服务端渲染/">
+<meta name="twitter:title" content="Refactor -- Treatment">
+<meta name="twitter:description" content="重新组织函数  Extract Method   —   Inline Method Inline Temp (内联临时变量) Replace Temp with Query (以查询取代临时变量) Introduce Explaining Variable (引入解释性变量)  Split Temporary Variable (分解临时变量) Remove Assignments to Par">
+  <link rel="canonical" href="http://yoursite.com/2019/08/25/refactor/Refactor Treatment/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>服务端渲染 | Just a Bolg</title>
+  <title>Refactor -- Treatment | Just a Bolg</title>
   
 
 
@@ -217,7 +217,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/front/服务端渲染/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/25/refactor/Refactor Treatment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance Huang">
@@ -231,7 +231,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">服务端渲染
+          <h1 class="post-title" itemprop="name headline">Refactor -- Treatment
 
               
             
@@ -251,11 +251,21 @@
                 
               
 
-              <time title="创建时间：2019-08-03 16:27:29 / 修改时间：16:32:01" itemprop="dateCreated datePublished" datetime="2019-08-03T16:27:29+08:00">2019-08-03</time>
+              <time title="创建时间：2019-08-25 09:30:51" itemprop="dateCreated datePublished" datetime="2019-08-25T09:30:51+08:00">2019-08-25</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-07 11:37:24" itemprop="dateModified" datetime="2020-06-07T11:37:24+08:00">2020-06-07</time>
+              </span>
             
           
 
@@ -270,7 +280,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://nuxtjs.org/guide/installation" target="_blank" rel="noopener">nuxt.js</a></p>
+        <h2 id="重新组织函数"><a href="#重新组织函数" class="headerlink" title="重新组织函数"></a>重新组织函数</h2><hr>
+<ol>
+<li>Extract Method   —   Inline Method</li>
+<li>Inline Temp (内联临时变量)</li>
+<li>Replace Temp with Query (以查询取代临时变量)</li>
+<li>Introduce Explaining Variable (引入解释性变量) </li>
+<li>Split Temporary Variable (分解临时变量)</li>
+<li>Remove Assignments to Parameters (移除对参数的赋值)<ul>
+<li>即对参数的修改是在副本发生的, 不影响原数据 </li>
+</ul>
+</li>
+<li>Replace Method with Method Object (以函数对象取代函数)<ul>
+<li>strategy pattern</li>
+</ul>
+</li>
+<li>Substitute Algorithm (替换算法)(优化逻辑)</li>
+</ol>
+<h2 id="在对象之间搬移特性"><a href="#在对象之间搬移特性" class="headerlink" title="在对象之间搬移特性"></a>在对象之间搬移特性</h2><hr>
+<ol>
+<li>Move Method</li>
+<li>Move Field</li>
+<li>Extract Class   —   Inline Class</li>
+<li>Hide Delegate (隐藏委托关系)   —   Remove Middle Man (移除中间人)</li>
+<li>Introduce Foreign Method (引入外加函数)<ul>
+<li>缩短或隐藏参数列表的一种手段</li>
+<li>通过将 <code>this</code> 等作为参数传入</li>
+</ul>
+</li>
+<li>Introduce Local Extension (引入本地扩展)<ul>
+<li>子类化或包装类</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="重新组织数据"><a href="#重新组织数据" class="headerlink" title="重新组织数据"></a>重新组织数据</h2><ol>
+<li>Self Encapsulate Field (自封装字段)<ul>
+<li><code>getter</code> / <code>setter</code></li>
+</ul>
+</li>
+<li>Replace Data Value with Object (以对象取代数据值)</li>
+<li>Change Value to Reference (将值对象改为引用对象)  —  Change Reference to Value (将引用对象改为值对象)<ul>
+<li>工厂模式</li>
+</ul>
+</li>
+<li>Change Unidirectional Association to Bidirectional(将单向关联改为双向关联) — Change Unidirectional Association to Bidirectional(将双向关联改为单向关联)</li>
+<li>Replace Magic Number with Symbolic Constant (以字面常量取代魔法数)</li>
+<li>Encapsulate Collection (封装集合)</li>
+<li>Replace Record with Data Class (以数据类取代记录)</li>
+</ol>
 
     </div>
 
@@ -281,8 +339,8 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/03/front/前端测试/" rel="next" title="前端测试">
-                <i class="fa fa-chevron-left"></i> 前端测试
+              <a href="/2019/08/18/refactor/Refactor Code Smell/" rel="next" title="Refactor -- Code Smell">
+                <i class="fa fa-chevron-left"></i> Refactor -- Code Smell
               </a>
             
           </div>
@@ -290,10 +348,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/08/03/front/Vue-Deploy/" rel="prev" title="Vue Deploy">
-                Vue Deploy <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -323,8 +377,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -336,8 +399,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -366,6 +446,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重新组织函数"><span class="nav-number">1.</span> <span class="nav-text">重新组织函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在对象之间搬移特性"><span class="nav-number">2.</span> <span class="nav-text">在对象之间搬移特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新组织数据"><span class="nav-number">3.</span> <span class="nav-text">重新组织数据</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -377,7 +474,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

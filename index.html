@@ -212,6 +212,320 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/25/refactor/Refactor Treatment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a Bolg">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/25/refactor/Refactor Treatment/" class="post-title-link" itemprop="url">Refactor -- Treatment</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-25 09:30:51" itemprop="dateCreated datePublished" datetime="2019-08-25T09:30:51+08:00">2019-08-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-07 11:37:24" itemprop="dateModified" datetime="2020-06-07T11:37:24+08:00">2020-06-07</time>
+              </span>
+            
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="重新组织函数"><a href="#重新组织函数" class="headerlink" title="重新组织函数"></a>重新组织函数</h2><hr>
+<ol>
+<li>Extract Method   —   Inline Method</li>
+<li>Inline Temp (内联临时变量)</li>
+<li>Replace Temp with Query (以查询取代临时变量)</li>
+<li>Introduce Explaining Variable (引入解释性变量) </li>
+<li>Split Temporary Variable (分解临时变量)</li>
+<li>Remove Assignments to Parameters (移除对参数的赋值)<ul>
+<li>即对参数的修改是在副本发生的, 不影响原数据 </li>
+</ul>
+</li>
+<li>Replace Method with Method Object (以函数对象取代函数)<ul>
+<li>strategy pattern</li>
+</ul>
+</li>
+<li>Substitute Algorithm (替换算法)(优化逻辑)</li>
+</ol>
+<h2 id="在对象之间搬移特性"><a href="#在对象之间搬移特性" class="headerlink" title="在对象之间搬移特性"></a>在对象之间搬移特性</h2><hr>
+<ol>
+<li>Move Method</li>
+<li>Move Field</li>
+<li>Extract Class   —   Inline Class</li>
+<li>Hide Delegate (隐藏委托关系)   —   Remove Middle Man (移除中间人)</li>
+<li>Introduce Foreign Method (引入外加函数)<ul>
+<li>缩短或隐藏参数列表的一种手段</li>
+<li>通过将 <code>this</code> 等作为参数传入</li>
+</ul>
+</li>
+<li>Introduce Local Extension (引入本地扩展)<ul>
+<li>子类化或包装类</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="重新组织数据"><a href="#重新组织数据" class="headerlink" title="重新组织数据"></a>重新组织数据</h2><ol>
+<li>Self Encapsulate Field (自封装字段)<ul>
+<li><code>getter</code> / <code>setter</code></li>
+</ul>
+</li>
+<li>Replace Data Value with Object (以对象取代数据值)</li>
+<li>Change Value to Reference (将值对象改为引用对象)  —  Change Reference to Value (将引用对象改为值对象)<ul>
+<li>工厂模式</li>
+</ul>
+</li>
+<li>Change Unidirectional Association to Bidirectional(将单向关联改为双向关联) — Change Unidirectional Association to Bidirectional(将双向关联改为单向关联)</li>
+<li>Replace Magic Number with Symbolic Constant (以字面常量取代魔法数)</li>
+<li>Encapsulate Collection (封装集合)</li>
+<li>Replace Record with Data Class (以数据类取代记录)</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/refactor/Refactor Code Smell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a Bolg">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/18/refactor/Refactor Code Smell/" class="post-title-link" itemprop="url">Refactor -- Code Smell</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-18 10:03:35" itemprop="dateCreated datePublished" datetime="2019-08-18T10:03:35+08:00">2019-08-18</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-24 21:00:00" itemprop="dateModified" datetime="2019-08-24T21:00:00+08:00">2019-08-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Refactor/" itemprop="url" rel="index"><span itemprop="name">Refactor</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h2 id="Code-Smell-in-Method"><a href="#Code-Smell-in-Method" class="headerlink" title="Code Smell in Method"></a>Code Smell in Method</h2><hr>
+<ol>
+<li>Long Method</li>
+<li>Duplicated Code</li>
+<li>Long Parameter List</li>
+<li>Switch Statements</li>
+<li>Feature Envy (依恋情节)<ul>
+<li>函数对某个类的兴趣高过对自己所处类的兴趣. 通常是兴趣点是数据</li>
+</ul>
+</li>
+<li>Middle Man (中间人)</li>
+<li>Comments (过多的注释)</li>
+</ol>
+<h2 id="Code-Smell-in-Class"><a href="#Code-Smell-in-Class" class="headerlink" title="Code Smell in Class"></a>Code Smell in Class</h2><hr>
+<ol>
+<li>Large Class</li>
+<li>Temporary Field (令人迷惑的暂时字段)<ul>
+<li>类中的某些字段只有在特殊时候才会有用, 满足某些特殊算法</li>
+</ul>
+</li>
+<li>Divergent Change (发散式修改)<ul>
+<li>类经常因为<strong>不同的原因</strong>在不同的方向上发生变化.</li>
+</ul>
+</li>
+<li>Shotgun Change (霰弹式修改)<ul>
+<li><strong>每遇到某种变化</strong>, 你都必须在许多不同的类内部做出许多小修改.</li>
+</ul>
+</li>
+<li>Lazy Class (冗赘类)<ul>
+<li>价值不大的类?</li>
+</ul>
+</li>
+</ol>
+<h2 id="Code-Smell-between-Classes"><a href="#Code-Smell-between-Classes" class="headerlink" title="Code Smell between Classes"></a>Code Smell between Classes</h2><hr>
+<ol>
+<li>Data Clumps (数据泥团)<ul>
+<li>两个类中的相同的字段, 许多函数签名中相同的参数. 这些总是绑在一起出现的数据应该拥有属于它们自己的对象</li>
+<li>删除众多数据中的一项后, 其他数据有没有因此而失去意义</li>
+</ul>
+</li>
+<li>Inappropriate intimacy<ul>
+<li>两个类过于关注彼此之间的 <code>private</code> 成分</li>
+</ul>
+</li>
+</ol>
+<h2 id="Code-Smell-about-Extending"><a href="#Code-Smell-about-Extending" class="headerlink" title="Code Smell about Extending"></a>Code Smell about Extending</h2><hr>
+<ol>
+<li>Parallel Inheritance Hierachies (平行继承体系)<ul>
+<li>每当你为某个类增加一个子类, 必须也为另一个类增加一个子类</li>
+</ul>
+</li>
+<li>Refused bequest (被拒绝的遗赠)<ul>
+<li>子类只需要父类中某些字段或某些方法.</li>
+<li>可通过在子类和父类之间再添加一个超类来解决</li>
+</ul>
+</li>
+</ol>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><hr>
+<ol>
+<li>Primitive Obsession (基本类型偏执)</li>
+<li>Speculative Generality (夸夸其谈未来性)</li>
+<li>Alternative classes with different interfaces (异曲同工类)</li>
+<li>Incomplete library class (不完美的类库)</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/backend/Java-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -261,7 +575,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 23:23:27" itemprop="dateModified" datetime="2019-08-17T23:23:27+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-25 08:58:01" itemprop="dateModified" datetime="2019-08-25T08:58:01+08:00">2019-08-25</time>
               </span>
             
           
@@ -279,7 +593,7 @@
       
           
             <ul>
-<li>本地变量类型推断 <code>var</code>…</li>
+<li>本地变量类型推断 <code>var</code></li>
 <li>字符串加强 <code>.isBlank()</code>, <code>.repeat()</code>…</li>
 <li>集合(<code>List/Set/Map</code>)加强 <code>List.of()</code>, <code>List.copy</code>…</li>
 <li>Stream加强 <code>takeWhile()</code>, <code>dropWhile()</code>…</li>
@@ -487,7 +801,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-16 20:51:08" itemprop="dateModified" datetime="2019-08-16T20:51:08+08:00">2019-08-16</time>
+                <time title="修改时间：2019-08-18 00:44:08" itemprop="dateModified" datetime="2019-08-18T00:44:08+08:00">2019-08-18</time>
               </span>
             
           
@@ -524,8 +838,9 @@
 <p>所以在 <code>microservice</code> 中引入了 <code>config center(配置中心的概念)</code>. 通过它你可以将某一个 <code>service</code> 对应的 <code>config file</code> 移动至一个统一的位置进行管理, 这个地方可以是某一个 Git仓库.</p>
 <p>而且通过和 <code>endpoints</code> 结合还可以做到 <code>hot update</code>, 不过还需要一个 <code>Bus</code> 去对全局的 <code>application</code> 发送拉取最新配置的事件.</p>
 <h2 id="Message-Queue"><a href="#Message-Queue" class="headerlink" title="Message Queue"></a>Message Queue</h2><p><code>Message Queue(消息队列)</code> 早在传统的 <code>SOA</code> 项目中就已经存在. <code>Message Queue</code> 在系统可以充当服务调用的媒介, 但同时它最重要的两个作用是 <strong>柔性事务</strong> 和 <strong>流量削峰</strong>.</p>
+<p><code>Message Queue</code> 是 <code>Event Drive</code> 模型的基础, 也就是说只有 A service 产生了一份数据, B service 才会被驱动执行的相应的逻辑. 这里与 <code>RPC</code> 最主要的区别在于, 如果 A service 在运行过程中需要调用 B service, 那么 <code>Event Drive</code> 就没办法满足这种需求.</p>
 <blockquote>
-<p>在服务调用中有两种方式 <code>RPC</code> 和 <code>Event Drive</code>.<br><code>RPC</code> 适合在 <code>XA(二阶段提交)</code> 的场景中使用.<br><code>Event Drive</code> 适合在追求 <code>最总一致性</code> 的场景中使用.</p>
+<p><code>RPC</code> 适合在 <code>XA(二阶段提交)</code> 的场景中使用.<br><code>Event Drive</code> 适合在追求 <code>最总一致性</code> 的场景中使用.</p>
 </blockquote>
 <h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2>
           
@@ -554,7 +869,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/distributed/kubernetes/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/ops/Kubernetes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chance Huang">
@@ -571,7 +886,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/10/distributed/kubernetes/" class="post-title-link" itemprop="url">Kubernetes</a>
+                <a href="/2019/08/10/ops/Kubernetes/" class="post-title-link" itemprop="url">Kubernetes</a>
               
             
           </h1>
@@ -603,7 +918,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 23:27:45" itemprop="dateModified" datetime="2019-08-17T23:27:45+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-18 01:09:58" itemprop="dateModified" datetime="2019-08-18T01:09:58+08:00">2019-08-18</time>
               </span>
             
           
@@ -811,7 +1126,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 23:22:58" itemprop="dateModified" datetime="2019-08-17T23:22:58+08:00">2019-08-17</time>
+                <time title="修改时间：2019-09-08 22:42:58" itemprop="dateModified" datetime="2019-09-08T22:42:58+08:00">2019-09-08</time>
               </span>
             
           
@@ -829,11 +1144,29 @@
       
           
             <ul>
-<li>Spring Boot 项目若采用JPA屏蔽数据库方言, 在本地开发环境中采用h2开发较为轻便.</li>
+<li><del>Spring Boot 项目若采用JPA屏蔽数据库方言, 在本地开发环境中采用h2开发较为轻便.</del></li>
+<li>尽可能保证从开发到测试到生产的环境一致 (故采用采用统一的数据库开发比较好)</li>
 <li>CI 环境可以添加 Swagger 方便团队查阅API文档.</li>
 <li>使用 Spring Boot actuator 运维很方便</li>
 </ul>
+<h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><hr>
+<ol>
+<li>在集成了 <strong>Spring Security</strong> 的 <strong>Spring Boot</strong> 项目进行 <strong>Controller</strong> 的测试</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  mockMvc = MockMvcBuilders.webAppContextSetup(context).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>这样做可以避开 <strong>Spring Security</strong> 专注于测试 <code>Controller</code> 的 Mapping. 又或者手动加入 <strong>Spring Security</strong> 的默认拦截栈, 并且配合 <code>@WithMockUser</code> 测试 API 的权限</p>
+<hr>
+<ol start="2">
+<li>自定义主键的 <strong>Generator</strong></li>
+</ol>
+<p>需要继承 <code>SequenceStyleGenerator</code>, 并且实现自己的 <code>generated</code> 方法. 并通过 <code>@GenericGenerator</code> 注册在 <strong>Entity</strong> 上, 之后就可以通过 <code>@GeneratedValue</code> 的 <code>genetator</code> 属性来使用自定义的主键生成策略.</p>
+<hr>
+<ol start="3">
+<li><strong>Lombok</strong> 与 <strong>JPA</strong> 整合使用时的坑.</li>
+</ol>
+<p>当同时使用 <code>@Data</code> 与 <code>@Builder</code> 注解时, 类会失去无参构造函数. 而 <strong>JPA</strong> 会要求我们提供一个无参构造函数. 这个时候可以通过使用  <code>@Tolerate</code> 来解决这个问题.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataBuilder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Tolerate</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DataBuilder</span> <span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1065,175 +1398,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/backend/JPA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chance Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a Bolg">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/03/backend/JPA/" class="post-title-link" itemprop="url">JPA</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-03 17:09:48 / 修改时间：17:11:59" itemprop="dateCreated datePublished" datetime="2019-08-03T17:09:48+08:00">2019-08-03</time>
-            </span>
-          
-            
-
-            
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <ul>
-<li>默认情况下, JPA在application启动的时候就会生成所有SQL语句, 这个时候如果你的实体类很多, 那么你就需要将这一行为设置为动态生成, <code>@DynamicInsert</code> <code>@DynamicUpdate</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/front/TypeScript/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chance Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Just a Bolg">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/03/front/TypeScript/" class="post-title-link" itemprop="url">TypeScript</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-03 16:31:00 / 修改时间：16:31:03" itemprop="dateCreated datePublished" datetime="2019-08-03T16:31:00+08:00">2019-08-03</time>
-            </span>
-          
-            
-
-            
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1271,8 +1435,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -1312,7 +1493,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

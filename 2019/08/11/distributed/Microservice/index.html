@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="Just a Bolg">
 <meta property="og:description" content="Service discovery 在 microservice 中 service 的注册与发现是非常重要的一个环节. 同一种类的 service 对应的是部署在不同机器上的 application, 通过向 service discovery center(服务发现中心) 进行注册, 被其他 service 获知. 例如 customer service 有3个 application 在不同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-16T12:51:08.000Z">
+<meta property="og:updated_time" content="2019-08-17T16:44:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Microservice">
 <meta name="twitter:description" content="Service discovery 在 microservice 中 service 的注册与发现是非常重要的一个环节. 同一种类的 service 对应的是部署在不同机器上的 application, 通过向 service discovery center(服务发现中心) 进行注册, 被其他 service 获知. 例如 customer service 有3个 application 在不同">
@@ -264,7 +264,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-16 20:51:08" itemprop="dateModified" datetime="2019-08-16T20:51:08+08:00">2019-08-16</time>
+                <time title="修改时间：2019-08-18 00:44:08" itemprop="dateModified" datetime="2019-08-18T00:44:08+08:00">2019-08-18</time>
               </span>
             
           
@@ -300,8 +300,9 @@
 <p>所以在 <code>microservice</code> 中引入了 <code>config center(配置中心的概念)</code>. 通过它你可以将某一个 <code>service</code> 对应的 <code>config file</code> 移动至一个统一的位置进行管理, 这个地方可以是某一个 Git仓库.</p>
 <p>而且通过和 <code>endpoints</code> 结合还可以做到 <code>hot update</code>, 不过还需要一个 <code>Bus</code> 去对全局的 <code>application</code> 发送拉取最新配置的事件.</p>
 <h2 id="Message-Queue"><a href="#Message-Queue" class="headerlink" title="Message Queue"></a>Message Queue</h2><p><code>Message Queue(消息队列)</code> 早在传统的 <code>SOA</code> 项目中就已经存在. <code>Message Queue</code> 在系统可以充当服务调用的媒介, 但同时它最重要的两个作用是 <strong>柔性事务</strong> 和 <strong>流量削峰</strong>.</p>
+<p><code>Message Queue</code> 是 <code>Event Drive</code> 模型的基础, 也就是说只有 A service 产生了一份数据, B service 才会被驱动执行的相应的逻辑. 这里与 <code>RPC</code> 最主要的区别在于, 如果 A service 在运行过程中需要调用 B service, 那么 <code>Event Drive</code> 就没办法满足这种需求.</p>
 <blockquote>
-<p>在服务调用中有两种方式 <code>RPC</code> 和 <code>Event Drive</code>.<br><code>RPC</code> 适合在 <code>XA(二阶段提交)</code> 的场景中使用.<br><code>Event Drive</code> 适合在追求 <code>最总一致性</code> 的场景中使用.</p>
+<p><code>RPC</code> 适合在 <code>XA(二阶段提交)</code> 的场景中使用.<br><code>Event Drive</code> 适合在追求 <code>最总一致性</code> 的场景中使用.</p>
 </blockquote>
 <h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2>
     </div>
@@ -313,7 +314,7 @@
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/10/distributed/kubernetes/" rel="next" title="Kubernetes">
+              <a href="/2019/08/10/ops/Kubernetes/" rel="next" title="Kubernetes">
                 <i class="fa fa-chevron-left"></i> Kubernetes
               </a>
             
@@ -377,8 +378,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
@@ -435,7 +453,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
