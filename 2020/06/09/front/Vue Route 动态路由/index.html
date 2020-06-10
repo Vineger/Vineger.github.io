@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前置 Vue Vue Route  简介动态路由指的是, 对于同一个网站, 不同权限的用户访问生成的 Vue Router Stack 都不一样. 从业务需求角度来说就是, 网站管理员的菜单要区别与普通用户的菜单. 我在实践过程中一共采用以下三种路由的生成方案:  静态路由 半动态路由 全动态路由   静态路由静态路由是 Vue Route 就有的概念. 它是最简单的一种路由配置想法, 路由配置文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Route 动态路由">
+<meta property="og:url" content="http://yoursite.com/2020/06/09/front/Vue Route 动态路由/index.html">
+<meta property="og:site_name" content="Just a Bolg">
+<meta property="og:description" content="前置 Vue Vue Route  简介动态路由指的是, 对于同一个网站, 不同权限的用户访问生成的 Vue Router Stack 都不一样. 从业务需求角度来说就是, 网站管理员的菜单要区别与普通用户的菜单. 我在实践过程中一共采用以下三种路由的生成方案:  静态路由 半动态路由 全动态路由   静态路由静态路由是 Vue Route 就有的概念. 它是最简单的一种路由配置想法, 路由配置文">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-10T14:53:08.407Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue Route 动态路由">
+<meta name="twitter:description" content="前置 Vue Vue Route  简介动态路由指的是, 对于同一个网站, 不同权限的用户访问生成的 Vue Router Stack 都不一样. 从业务需求角度来说就是, 网站管理员的菜单要区别与普通用户的菜单. 我在实践过程中一共采用以下三种路由的生成方案:  静态路由 半动态路由 全动态路由   静态路由静态路由是 Vue Route 就有的概念. 它是最简单的一种路由配置想法, 路由配置文">
+  <link rel="canonical" href="http://yoursite.com/2020/06/09/front/Vue Route 动态路由/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Vue Route 动态路由 | Just a Bolg</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just a Bolg</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/front/Vue Route 动态路由/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chance Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just a Bolg">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Vue Route 动态路由
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-06-09 20:00:00" itemprop="dateCreated datePublished" datetime="2020-06-09T20:00:00+08:00">2020-06-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-10 22:53:08" itemprop="dateModified" datetime="2020-06-10T22:53:08+08:00">2020-06-10</time>
+              </span>
+            
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ul>
+<li>Vue</li>
+<li>Vue Route</li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>动态路由指的是, 对于同一个网站, 不同权限的用户访问生成的 <strong>Vue Router Stack</strong> 都不一样. 从业务需求角度来说就是, 网站管理员的菜单要区别与普通用户的菜单.</p>
+<p>我在实践过程中一共采用以下三种路由的生成方案:</p>
+<ul>
+<li>静态路由</li>
+<li>半动态路由</li>
+<li>全动态路由</li>
+</ul>
+<hr>
+<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><p>静态路由是 <strong>Vue Route</strong> 就有的概念. 它是最简单的一种路由配置想法, 路由配置文件全部硬编码在前端代码中. 前端的路由与后端完全无关.</p>
+<p>这样的做法优势就是 <strong>实现和组织都比较简单</strong>, 但是它没有办法实现我一开始所说的管理员与普通用户的菜单分离.</p>
+<blockquote>
+<p>事实上, 采用这种方案是可以实现的. 这是实现的方式是, 普通对应一套代码一套系统, 管理员对应一套代码一套系统.</p>
+</blockquote>
+<hr>
+<h2 id="半动态路由"><a href="#半动态路由" class="headerlink" title="半动态路由"></a>半动态路由</h2><p>半动态路由是在静态路由的基础上优化之后的解决方案. 路由依旧配置在前端代码中, 只是在生成 <strong>Vue Route Stack</strong> 之前根据后端的返回数据进行路由过滤, 生成符合条件的路由推入堆栈.</p>
+<p>该方案的关键如下:</p>
+<ul>
+<li>Vue Route 配置中的 <code>meta</code> 的自定义字段, 如: <code>{requireAuth: true, role: &#39;admin&#39;}</code></li>
+<li>后端接口需要返回用户的 <strong>Role</strong> 或 <strong>Permission</strong>.</li>
+<li>前端在 <code>new Vue({...})</code> 之前, 根据前端路由的配置和后端接口的返回结果, 进行路由过滤, 生成如何当前用户视角的 <strong>Vue Route Stack</strong></li>
+<li>(Optional) 可抽象出两部分路由, 一部分为公有路由, 即不管任何用户都会拥有的路由. 一部分为私有路由, 即只有拥有特定权限的用户才拥有的路由.</li>
+</ul>
+<p>简单实现代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  requireAuth 是否需要权限校验</span></span><br><span class="line"><span class="comment">  role: 对应的角色</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> publicRoutes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/public-router'</span>,</span><br><span class="line">    component: publicComponent,</span><br><span class="line">    meta: &#123; <span class="attr">requireAuth</span>: <span class="literal">false</span>, <span class="attr">role</span>: <span class="string">'normal-user'</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> privateRoutes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/private-router'</span>,</span><br><span class="line">    component: privateComponent,</span><br><span class="line">    meta: &#123; <span class="attr">requireAuth</span>: <span class="literal">true</span>, <span class="attr">role</span>: <span class="string">'admin'</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRoute(&#123; <span class="attr">routes</span>: publicRoutes &#125;);</span><br><span class="line">router.addRoutes(filterByRole(routes, getRoles(user)));</span><br><span class="line"></span><br><span class="line">filterByRole(routes, roles) &#123;</span><br><span class="line">  <span class="keyword">return</span> roles</span><br><span class="line">          .filter(<span class="function"><span class="params">n</span> =&gt;</span> n.requireAuth)</span><br><span class="line">          .fitter(<span class="function"><span class="params">n</span> =&gt;</span> roles.includes(n));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getRoles(user) &#123;</span><br><span class="line">  <span class="comment">// load data from backend</span></span><br><span class="line">  <span class="comment">// implement</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>半动态路由的优势在于</p>
+<ul>
+<li>实现了用户路由和管理员路由的分离.</li>
+<li>相对于全动态路由, 实现比较简单.</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>虽然普通用户的 <strong>Vue Route Stack</strong> 和管理员的 <strong>Vue Route Stack</strong> 不一样. 可是它是配置在前端代码之中, 即打包后的 js 文件中, 依旧存有全部的 <strong>Vue Route Stack</strong> 配置.</li>
+<li>不够灵活. 因为是硬编码在前端代码中, 所以对于 <strong>Vue Route Stack</strong> 的修改很有限. 只能授权, 不能增加或减少.</li>
+</ul>
+<hr>
+<h2 id="全动态路由"><a href="#全动态路由" class="headerlink" title="全动态路由"></a>全动态路由</h2><p>理想中的全动态路由是, 前端只保留所有用户都可以访问的路由配置, 例如:404, 500等. 剩下的路由全部交由后端基于数据库生成. 这样做的好处有以下两点:</p>
+<ul>
+<li>灵活. 可随时更改路由配置而无需更改代码.</li>
+<li>安全. 路由信息保存于数据库, 用户永远只能获取到自己有权限的路由列表.</li>
+</ul>
+<p>但是实现这样的路由并不什么简单的事情. 在真正实践的过程中, 遇到了以下的困难.</p>
+<ul>
+<li>关系数据库如何存储 <strong>Vue Route Stack</strong> 这样的树型数据.</li>
+<li>如何存放 <code>component</code> 字段.</li>
+</ul>
+<p>关系型数据库存放树型数据, 可以参考数据结构中的 <code>Tree</code>. 虽然会有一点点难, 但是还是可以解决的.</p>
+<p>但是 <code>component</code> 的存放是一个硬伤如果你将 <code>component</code> 存起来了, 那么前端的代码只要一移动, 那你的 <code>Route</code> 就会失效. 并且它是不受 <strong>IDE</strong> 控制的. 所以你对于代码文件位置的修改就会变得很危险.</p>
+<p>那么比较好的实现方式是什么呢?</p>
+<h3 id="动态引用组件"><a href="#动态引用组件" class="headerlink" title="动态引用组件"></a>动态引用组件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> registeredComponent = &#123;</span><br><span class="line">  privateComponent: <span class="string">'@/component/privateComponent'</span>,</span><br><span class="line">  publicComponent:<span class="string">'@/component/publicComponent'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">loadRoutes() &#123;</span><br><span class="line">  <span class="comment">// mocked data from backend.</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    path: <span class="string">'/private-component'</span>,</span><br><span class="line">    component: <span class="string">'privateComponent'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">buildRoutes(routes) &#123;</span><br><span class="line">  <span class="keyword">return</span> routes.map(<span class="function"><span class="params">n</span> =&gt;</span> n.component = <span class="keyword">import</span>(registeredcomponent[n.component]));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> route = <span class="keyword">new</span> VueRoute(&#123; <span class="attr">routes</span>: [] &#125;);</span><br><span class="line">route.addRoutes(buildRoutes(loadRoutes()));</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态引用组件"><a href="#静态引用组件" class="headerlink" title="静态引用组件"></a>静态引用组件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> privatecomponent <span class="keyword">from</span> <span class="string">'@/component/privateComponent'</span>;</span><br><span class="line"><span class="keyword">import</span> publiccomponent <span class="keyword">from</span> <span class="string">'@/component/publicComponent'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> registeredcomponent = &#123;</span><br><span class="line">  privatecomponent,</span><br><span class="line">  publiccomponent</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">loadRoutes() &#123;</span><br><span class="line">  <span class="comment">// mocked data from backend.</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    path: <span class="string">'/private-component'</span>,</span><br><span class="line">    component: <span class="string">'privateComponent'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">buildRoutes(routes) &#123;</span><br><span class="line">  <span class="keyword">return</span> routes.map(<span class="function"><span class="params">n</span> =&gt;</span> n.component = registeredcomponent[n.component]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> route = <span class="keyword">new</span> VueRoute(&#123; <span class="attr">routes</span>: [] &#125;);</span><br><span class="line">route.addRoutes(buildRoutes(loadRoutes()));</span><br></pre></td></tr></table></figure>
+
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>不管是动态引入组件还是静态引入组件. 它的核心思想都是一样的. <strong>解耦数据库 <code>component</code> 与前端代码中的 <code>component</code></strong>. 这里我利用了JavaScript的特性, 使用  <code>registeredComponent</code> 进行了解耦.</p>
+<hr>
+<h2 id="Adventure"><a href="#Adventure" class="headerlink" title="Adventure"></a>Adventure</h2><p>这里列出的是一些额外的需求点.</p>
+<h3 id="Menu-Sequence"><a href="#Menu-Sequence" class="headerlink" title="Menu Sequence"></a>Menu Sequence</h3><p>控制菜单在 UI 上的排列顺序.</p>
+<p>Solved: 多一个字段用于表明menue的sequence</p>
+<h3 id="Invisible-Router"><a href="#Invisible-Router" class="headerlink" title="Invisible Router"></a>Invisible Router</h3><p>控制 <strong>Router</strong> 是否现在 <strong>menu</strong> 中.</p>
+<p>Solved: 多一个字段用于表明是否为menue</p>
+<h3 id="reload-real-time"><a href="#reload-real-time" class="headerlink" title="reload real time"></a>reload real time</h3><p>实时刷新用户的Route</p>
+<p>Difficult: 在 <strong>Vue Route</strong> 的 API 中没有可以删除或者移除 <strong>Route</strong> 的方法.</p>
+<p>Maybe: 通过引用, 在 <strong>Vue</strong> 运行过程中动态改变整个 <strong>Vue Route Stack</strong>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/25/refactor/Refactor Treatment/" rel="next" title="Refactor -- Treatment">
+                <i class="fa fa-chevron-left"></i> Refactor -- Treatment
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chance Huang</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前置"><span class="nav-number">1.</span> <span class="nav-text">前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态路由"><span class="nav-number">3.</span> <span class="nav-text">静态路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#半动态路由"><span class="nav-number">4.</span> <span class="nav-text">半动态路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全动态路由"><span class="nav-number">5.</span> <span class="nav-text">全动态路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态引用组件"><span class="nav-number">5.1.</span> <span class="nav-text">动态引用组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态引用组件"><span class="nav-number">5.2.</span> <span class="nav-text">静态引用组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">5.3.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adventure"><span class="nav-number">6.</span> <span class="nav-text">Adventure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Menu-Sequence"><span class="nav-number">6.1.</span> <span class="nav-text">Menu Sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Invisible-Router"><span class="nav-number">6.2.</span> <span class="nav-text">Invisible Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reload-real-time"><span class="nav-number">6.3.</span> <span class="nav-text">reload real time</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chance Huang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
